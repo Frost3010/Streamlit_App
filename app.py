@@ -6,20 +6,20 @@ import json
 st.title('Loan Default Prediction App')
 
 # Create input fields
-age = st.slider('Age', min_value=18, max_value=100, value=1)
-income = st.slider('Income', min_value=0, max_value=500000, value=100.0)
-emp_exp = st.slider('Employment Experience (years)', min_value=0.0, max_value=50.0, value=1.0)
-loan_amount = st.slider('Loan Amount', min_value=1000.0, max_value=1000000.0, value=1000.0)
-interest_rate = st.slider('Interest Rate', min_value=0.0, max_value=30.0, value=10.0)
-percent_income = st.slider('Percent Income', min_value=0.0, max_value=20.0, value=0.1)
-cred_hist_length = st.slider('Credit History Length (years)', min_value=0.0, max_value=40.0, value=5.0)
-credit_score = st.slider('Credit Score', min_value=100, max_value=800, value=650)
+age = st.slider('Age', min_value=20, max_value=144, value=30)
+income = st.slider('Income', min_value=8000, max_value=7200766, value=50000)
+emp_exp = st.slider('Employment Experience (years)', min_value=0, max_value=125, value=5)
+loan_amount = st.slider('Loan Amount', min_value=500, max_value=35000, value=10000)
+interest_rate = st.slider('Interest Rate', min_value=5.42, max_value=20.0, value=10.0)
+percent_income = st.slider('Percent Income', min_value=0.0, max_value=0.66, value=0.1)
+cred_hist_length = st.slider('Credit History Length (years)', min_value=2.0, max_value=30.0, value=5.0)
+credit_score = st.slider('Credit Score', min_value=390, max_value=850, value=650)
 
 gender = st.selectbox('Gender', options=['male', 'female'])
-education = st.selectbox('Education', options=['High School', 'Bachelor', 'Master', 'Doctorate'])
-home_ownership = st.selectbox('Home Ownership', options=['RENT', 'MORTGAGE', 'OWN'])
+education = st.selectbox('Education', options=['High School', 'Bachelor', 'Master', 'Associate', 'Doctorate'])
+home_ownership = st.selectbox('Home Ownership', options=['RENT', 'OWN', 'MORTGAGE', 'OTHER'])
 loan_intent = st.selectbox('Loan Intent', options=['PERSONAL', 'EDUCATION', 'MEDICAL', 'VENTURE', 'HOMEIMPROVEMENT', 'DEBTCONSOLIDATION'])
-previous_defaults = st.selectbox('Previous Defaults', options=['Yes', 'No'])
+previous_defaults = st.selectbox('Previous Defaults', options=['No', 'Yes'])
 
 if st.button('Predict'):
     # Prepare the input data
@@ -44,7 +44,8 @@ if st.button('Predict'):
     
     if response.status_code == 200:
         result = response.json()
-        st.success(f"Loan Application Status: {result['prediction']}")
+        prediction = "Approved" if result['prediction'] == 1 else "Denied"
+        st.success(f"Loan Application Status: {prediction}")
     else:
         st.error("An error occurred while processing your request.")
 
