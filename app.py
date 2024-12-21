@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import json
 
-st.title('Loan Default Prediction App')
+st.title('Loan Approval Prediction App')
 
 # Create input fields
 age = st.slider('Age', min_value=20, max_value=100, value=30)
