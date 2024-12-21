@@ -6,13 +6,13 @@ import json
 st.title('Loan Default Prediction App')
 
 # Create input fields
-age = st.slider('Age', min_value=20, max_value=144, value=30)
-income = st.slider('Income', min_value=8000, max_value=7200766, value=50000)
-emp_exp = st.slider('Employment Experience (years)', min_value=0, max_value=125, value=5)
-loan_amount = st.slider('Loan Amount', min_value=500, max_value=35000, value=10000)
-interest_rate = st.slider('Interest Rate', min_value=5.42, max_value=20.0, value=10.0)
+age = st.slider('Age', min_value=20, max_value=100, value=30)
+income = st.slider('Income', min_value=8000, max_value=1000000, value=50000)
+emp_exp = st.slider('Employment Experience (years)', min_value=0, max_value=70, value=5)
+loan_amount = st.slider('Loan Amount', min_value=500, max_value=500000, value=10000)
+interest_rate = st.slider('Interest Rate', min_value=5.42, max_value=25.0, value=10.0)
 percent_income = st.slider('Percent Income', min_value=0.0, max_value=0.66, value=0.1)
-cred_hist_length = st.slider('Credit History Length (years)', min_value=2.0, max_value=30.0, value=5.0)
+cred_hist_length = st.slider('Credit History Length (years)', min_value=2.0, max_value=50.0, value=5.0)
 credit_score = st.slider('Credit Score', min_value=390, max_value=850, value=650)
 
 gender = st.selectbox('Gender', options=['male', 'female'])
