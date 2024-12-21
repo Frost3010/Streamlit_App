@@ -3,20 +3,17 @@ import pandas as pd
 import requests
 import json
 
-# Load the data file for reference ranges
-df = pd.read_csv('loan_data.csv')
-
 st.title('Loan Default Prediction App')
 
 # Create input fields
-age = st.slider('Age', min_value=18, max_value=100, value=30)
-income = st.slider('Income', min_value=float(df['person_income'].min()), max_value=float(df['person_income'].max()), value=50000.0)
-emp_exp = st.slider('Employment Experience (years)', min_value=0.0, max_value=float(df['person_emp_exp'].max()), value=5.0)
-loan_amount = st.slider('Loan Amount', min_value=float(df['loan_amnt'].min()), max_value=float(df['loan_amnt'].max()), value=10000.0)
-interest_rate = st.slider('Interest Rate', min_value=float(df['loan_int_rate'].min()), max_value=float(df['loan_int_rate'].max()), value=10.0)
-percent_income = st.slider('Percent Income', min_value=float(df['loan_percent_income'].min()), max_value=float(df['loan_percent_income'].max()), value=0.1)
-cred_hist_length = st.slider('Credit History Length (years)', min_value=float(df['cb_person_cred_hist_length'].min()), max_value=float(df['cb_person_cred_hist_length'].max()), value=5.0)
-credit_score = st.slider('Credit Score', min_value=int(df['credit_score'].min()), max_value=int(df['credit_score'].max()), value=650)
+age = st.slider('Age', min_value=18, max_value=100, value=1)
+income = st.slider('Income', min_value=0, max_value=500000, value=100.0)
+emp_exp = st.slider('Employment Experience (years)', min_value=0.0, max_value=50.0, value=1.0)
+loan_amount = st.slider('Loan Amount', min_value=1000.0, max_value=1000000.0, value=1000.0)
+interest_rate = st.slider('Interest Rate', min_value=0.0, max_value=30.0, value=10.0)
+percent_income = st.slider('Percent Income', min_value=0.0, max_value=20.0, value=0.1)
+cred_hist_length = st.slider('Credit History Length (years)', min_value=0.0, max_value=40.0, value=5.0)
+credit_score = st.slider('Credit Score', min_value=100, max_value=800, value=650)
 
 gender = st.selectbox('Gender', options=['male', 'female'])
 education = st.selectbox('Education', options=['High School', 'Bachelor', 'Master', 'Doctorate'])
