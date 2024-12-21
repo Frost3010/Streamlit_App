@@ -53,18 +53,22 @@ if st.button('Predict'):
     # else:
     #     st.error("An error occurred while processing your request.")
 
+    # if response.status_code == 200:
+    #     result = response.json()
+    #     prediction = ''
+    #     if 'prediction' in result:
+    #         if result['prediction'] == 1:
+    #             prediction = "Approved"
+    #     elif result['prediction'] == 0:
+    #         prediction = "Denied"
+    #     else:
+    #         prediction = f"Unknown (Value: {result['prediction']})"
+    # else:
+    #     prediction = "No prediction found in response"
+    #     st.success(f"Loan Application Status: {prediction}")
+
     if response.status_code == 200:
         result = response.json()
-        prediction = ''
-        if 'prediction' in result:
-            if result['prediction'] == 1:
-                prediction = "Approved"
-        elif result['prediction'] == 0:
-            prediction = "Denied"
-        else:
-            prediction = f"Unknown (Value: {result['prediction']})"
+        st.success(f"Loan Application Status: {result['prediction']}")
     else:
-        prediction = "No prediction found in response"
-        st.success(f"Loan Application Status: {prediction}")
-
-st.write("Note: This app assumes that your FastAPI server is running on localhost:8000. Adjust the URL if needed.")
+        st.error("An error occurred while processing your request.")
