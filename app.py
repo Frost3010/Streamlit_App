@@ -44,6 +44,7 @@ if st.button('Predict'):
     
     if response.status_code == 200:
         result = response.json()
+        prediction = ''
         if result['prediction'] == 1:
             prediction = "Approved" 
         elif result['prediction'] == 0:
