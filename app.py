@@ -44,7 +44,10 @@ if st.button('Predict'):
     
     if response.status_code == 200:
         result = response.json()
-        prediction = "Approved" if result['prediction'] == 1 else "Denied"
+        if result['prediction'] == 1:
+            prediction = "Approved" 
+        elif result['prediction'] == 0:
+            prediction =  "Denied"
         st.success(f"Loan Application Status: {prediction}")
     else:
         st.error("An error occurred while processing your request.")
