@@ -40,7 +40,7 @@ if st.button('Predict'):
     }
 
     # Make a POST request to the FastAPI endpoint
-    response = requests.post("http://localhost:8000/predict", json=input_data)
+    response = requests.post("http://165.22.43.24:8000/predict", json=input_data)
     
     if response.status_code == 200:
         result = response.json()
