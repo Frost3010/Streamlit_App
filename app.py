@@ -42,15 +42,29 @@ if st.button('Predict'):
     # Make a POST request to the FastAPI endpoint
     response = requests.post("http://165.22.43.24:8000/predict", json=input_data)
     
+    # if response.status_code == 200:
+    #     result = response.json()
+    #     prediction = ''
+    #     if result['prediction'] == 1:
+    #         prediction = "Approved" 
+    #     elif result['prediction'] == 0:
+    #         prediction =  "Denied"
+    #     st.success(f"Loan Application Status: {prediction}")
+    # else:
+    #     st.error("An error occurred while processing your request.")
+
     if response.status_code == 200:
         result = response.json()
         prediction = ''
-        if result['prediction'] == 1:
-            prediction = "Approved" 
+        if 'prediction' in result:
+            if result['prediction'] == 1:
+                prediction = "Approved"
         elif result['prediction'] == 0:
-            prediction =  "Denied"
-        st.success(f"Loan Application Status: {prediction}")
+            prediction = "Denied"
+        else:
+            prediction = f"Unknown (Value: {result['prediction']})"
     else:
-        st.error("An error occurred while processing your request.")
+        prediction = "No prediction found in response"
+        st.success(f"Loan Application Status: {prediction}")
 
 st.write("Note: This app assumes that your FastAPI server is running on localhost:8000. Adjust the URL if needed.")
